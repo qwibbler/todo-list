@@ -15,7 +15,6 @@ const items = [
 ]
 
 function documentToDo() {
-    console.log('hello');
     for (let i = 0; i < items.length; i += 1) {
       const frag = document.createDocumentFragment();
       console.log(frag);
@@ -41,6 +40,7 @@ function documentToDo() {
 
       todoList.appendChild(todoDiv);
       todoList.appendChild(span);
+      span.textContent = '&#8942;'
       frag.appendChild(todoList);
       wrapper.appendChild(frag);
   }
