@@ -40,7 +40,7 @@ function documentToDo() {
 
       todoList.appendChild(todoDiv);
       todoList.appendChild(span);
-      span.textContent = '&#8942;'
+      span.innerHTML = '&#8942;';
       frag.appendChild(todoList);
       wrapper.appendChild(frag);
   }
