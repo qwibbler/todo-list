@@ -17,6 +17,7 @@ const items = [
   },
 ];
 ls.getListData(items, ls.saveDataLocation);
+ls.saveListData(items, ls.saveDataLocation);
 
 function documentToDo() {
   wrapper.innerHTML = '';
