@@ -1,0 +1,49 @@
+body {
+  background-color: #f6f6f6;
+  border-top: 2rem solid black;
+  border-bottom: 2rem solid black;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e6e6e6;
+}
+
+span {
+  color: gray;
+}
+
+input {
+  color: gray;
+}
+
+.wrapper {
+  margin: 2rem;
+  background-color: #fefefe;
+  box-shadow: 0.1rem 0.25rem 0.3rem rgba(0, 0, 0, 0.06);
+}
+
+#subheading {
+  font-style: italic;
+  color: gray;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  color: gray;
+  background-color: #f6f6f6;
+}
+
+.footer li {
+  border: none;
+}
