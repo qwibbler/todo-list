@@ -1,23 +1,29 @@
-import './style.css';
+// import './style.css';
+import {toggleComplete} from './complete.js';
+import * as ls from './local-storage.js';
+
+const saveDataLocation = 'myLocalToDo'
 
 const wrapper = document.querySelector('.items');
-const items = [
+let items = [
   {
     description: 'wash the dishes',
     complete: false,
-    index: '0',
+    index: 0,
   },
   {
     description: 'complete To Do list project',
     complete: false,
-    index: '1',
+    index: 1,
   },
 ];
+items = ls.getListData(items, saveDataLocation)
 
 function documentToDo() {
+  wrapper.innerHTML = '';
   for (let i = 0; i < items.length; i += 1) {
     const frag = document.createDocumentFragment();
-    const todoItem = items[i];
+    const todoItem = items.filter((item) => item.index === i)[0];
 
     const todoList = document.createElement('li');
     const todoDiv = document.createElement('div');
@@ -31,10 +37,16 @@ function documentToDo() {
     checkBox.name = todoItem.index;
     checkBox.id = todoItem.index;
     checkBox.checked = todoItem.complete;
+    checkBox.addEventListener('click', () => {
+      toggleComplete(todoItem, items);
+      ls.saveListData(items, saveDataLocation)
+      documentToDo();
+    })
 
     todoDiv.appendChild(labelDesc);
     labelDesc.htmlFor = todoItem.index;
     labelDesc.textContent = todoItem.description;
+    labelDesc.classList = (todoItem.complete);
 
     todoList.appendChild(todoDiv);
     todoList.appendChild(span);
