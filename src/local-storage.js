@@ -1,3 +1,5 @@
+export const saveDataLocation = 'myLocalToDo'
+
 export const saveListData = (data, location) => {
   localStorage.setItem(location, JSON.stringify(data));
   console.log(data, JSON.stringify(data));

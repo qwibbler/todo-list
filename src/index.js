@@ -2,8 +2,6 @@
 import {toggleComplete} from './complete.js';
 import * as ls from './local-storage.js';
 
-const saveDataLocation = 'myLocalToDo'
-
 const wrapper = document.querySelector('.items');
 let items = [
   {
@@ -17,7 +15,7 @@ let items = [
     index: 1,
   },
 ];
-items = ls.getListData(items, saveDataLocation)
+items = ls.getListData(items, ls.saveDataLocation)
 
 function documentToDo() {
   wrapper.innerHTML = '';
@@ -39,7 +37,7 @@ function documentToDo() {
     checkBox.checked = todoItem.complete;
     checkBox.addEventListener('click', () => {
       toggleComplete(todoItem, items);
-      ls.saveListData(items, saveDataLocation)
+      ls.saveListData(items, ls.saveDataLocation)
       documentToDo();
     })
 
@@ -48,6 +46,7 @@ function documentToDo() {
     labelDesc.textContent = todoItem.description;
     labelDesc.classList = (todoItem.complete);
 
+    todoList.id = `${i}li`
     todoList.appendChild(todoDiv);
     todoList.appendChild(span);
     span.innerHTML = '&#8942;';
