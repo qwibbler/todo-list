@@ -1,4 +1,4 @@
-// import './style.css';
+import './style.css';
 import {toggleComplete} from './complete.js';
 import * as ls from './local-storage.js';
 
@@ -15,7 +15,7 @@ let items = [
     index: 1,
   },
 ];
-items = ls.getListData(items, ls.saveDataLocation)
+ls.getListData(items, ls.saveDataLocation)
 
 function documentToDo() {
   wrapper.innerHTML = '';
