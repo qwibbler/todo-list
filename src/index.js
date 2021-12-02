@@ -1,4 +1,4 @@
-import './style.css';
+// import './style.css';
 import { toggleComplete } from './complete.js';
 import * as ls from './local-storage.js';
 import defaultList from './default-list.js';
