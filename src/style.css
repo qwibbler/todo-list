@@ -37,6 +37,11 @@ input {
   color: gray;
 }
 
+.true {
+  text-decoration: line-through;
+  color: gray;
+}
+
 .footer {
   display: flex;
   justify-content: center;
