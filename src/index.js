@@ -2,8 +2,10 @@
 import { toggleComplete } from './complete.js';
 import * as ls from './local-storage.js';
 import defaultList from './default-list.js';
+import { addItem } from './add-remove.js';
 
 const wrapper = document.querySelector('.items');
+const addIt = document.querySelector('#add-item');
 const defaultItems = [
   {
     description: 'wash the dishes',
@@ -34,3 +36,8 @@ function documentToDo() {
 }
 
 window.onload = documentToDo;
+addIt.addEventListener('change', () => {
+  documentToDo(addItem(addIt, items));
+  ls.saveListData(items, ls.saveDataLocation);
+  console.log('change', items);
+})
