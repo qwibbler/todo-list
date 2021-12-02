@@ -1,10 +1,10 @@
-import './style.css';
+// import './style.css';
 import { toggleComplete } from './complete.js';
 import * as ls from './local-storage.js';
 import defaultList from './default-list.js';
 
 const wrapper = document.querySelector('.items');
-const items = [
+const defaultItems = [
   {
     description: 'wash the dishes',
     complete: false,
@@ -16,7 +16,8 @@ const items = [
     index: 1,
   },
 ];
-ls.getListData(items, ls.saveDataLocation);
+
+const items = ls.getListData(defaultItems, ls.saveDataLocation);
 
 function documentToDo() {
   wrapper.innerHTML = '';

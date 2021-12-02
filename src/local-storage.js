@@ -2,13 +2,13 @@ export const saveDataLocation = 'myLocalToDo';
 
 export const saveListData = (data, location) => {
   localStorage.setItem(location, JSON.stringify(data));
+  return data;
 };
 
-export const getListData = (data, location) => {
+export const getListData = (defaultData, location) => {
   if (localStorage.getItem(location)) {
-    data = JSON.parse(localStorage.getItem(location));
-  } else {
-    saveListData(data, location);
+    const data = JSON.parse(localStorage.getItem(location));
+    return data;
   }
-  return data;
+  return saveListData(defaultData, location);
 };
