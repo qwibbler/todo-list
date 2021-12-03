@@ -15,7 +15,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](#)
+[Live Demo Link](https://qwibbler.github.io/todo-list/)
 
 
 ## Getting Started
