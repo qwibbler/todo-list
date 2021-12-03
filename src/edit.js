@@ -1,6 +1,26 @@
 let checkEdit = false;
 
-export const edit = (inputDiv) => {
+export const toggleIcons = (inputDiv) => {
+  const listItem = inputDiv.parentElement;
+  const initIcon = listItem.querySelector('span');
+  const altIcon = listItem.querySelector('.altSpan');
+  const listenerEnd = () => {
+    endEdit(inputDiv)
+    console.log('listener');
+    altIcon.removeEventListener('click', listenerEnd);
+  }
+  if (checkEdit === true) {
+    initIcon.style.display = 'none';
+    altIcon.style.display = 'initial';
+    altIcon.addEventListener('click', listenerEnd);
+  } else {
+    initIcon.style.display = 'initial';
+    altIcon.style.display = 'none';
+  }
+  return [initIcon, altIcon];
+}
+
+export const editDesc = (inputDiv) => {
   checkEdit = true;
 
   const label = inputDiv.querySelector('label');
@@ -8,8 +28,10 @@ export const edit = (inputDiv) => {
   input.type = 'text';
   input.id = 'editing';
   input.value = label.textContent;
+
   inputDiv.removeChild(label);
   inputDiv.appendChild(input);
+
   input.focus();
   input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
@@ -17,26 +39,33 @@ export const edit = (inputDiv) => {
     }
   })
 
-  const icon = inputDiv.parentElement.querySelector('span');
-  icon.innerHTML = '&#10003;'
+  toggleIcons(inputDiv);
+  // const listenerEnd = () => {
+  //   endEdit(inputDiv)
+  //   console.log('listener');
+  // // }
+  // icon.removeEventListener('click', listenerEnd);
+  // icon.addEventListener('click', listenerEnd);
 }
 
 export const endEdit = (inputDiv) => {
-  checkEdit = false;
-
+  if (checkEdit === true) {
+    checkEdit = false;
+  } else {
+    return
+  }
   const input = inputDiv.querySelector('#editing');
   const label = document.createElement('label');
   label.textContent = input.value;
   inputDiv.removeChild(input);
   inputDiv.appendChild(label);
 
-  const icon = inputDiv.parentElement.querySelector('span');
-  icon.innerHTML = '&#8942;';
+  toggleIcons(inputDiv)
 }
 
 export const toggleEditing = (inputDiv) => {
   if (checkEdit === false) {
-    edit(inputDiv);
+    editDesc(inputDiv);
   } else {
     endEdit(inputDiv);
   }

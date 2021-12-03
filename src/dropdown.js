@@ -1,7 +1,9 @@
-let dropped = false
+import * as startEdit from './edit.js'
+
+export let dropped = 0;
 
 export const createMenu = (elem) => {
-  dropped = true;
+  dropped += 1;
 
   const frag = document.createDocumentFragment();
   const ul = document.createElement('ul');
@@ -19,25 +21,32 @@ export const createMenu = (elem) => {
   edit.innerHTML = '&#x270D Edit';
   del.innerHTML = '&#128465; Delete';
 
+  edit.addEventListener('click', () => {
+    const inputDiv = elem.parentElement.querySelector('.input');
+    startEdit.editDesc(inputDiv);
+  })
+
   elem.appendChild(frag)
   const icon = elem.querySelector('span');
   icon.innerHTML = '&#8230;'
 }
 
 export const delMenu = (elem) => {
-  dropped = false;
+  dropped -= 1;
 
   const menu = elem.querySelector('ul');
-  elem.removeChild(menu);
+  if (menu) {
+    elem.removeChild(menu);
+  }
 
   const icon = elem.querySelector('span');
   icon.innerHTML = '&#8942;'
 }
 
 export const toggleDropmenu = (elem) => {
-  if (dropped == false) {
+  if (dropped === 0) {
     createMenu(elem);
-  } else {
+  } else if (dropped === 1) {
     delMenu(elem)
   }
   return dropped;

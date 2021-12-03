@@ -2,6 +2,8 @@ import { toggleComplete } from './complete.js';
 import * as edit from './edit.js';
 import * as dropdown from './dropdown.js';
 
+let trackDropmenu = 0;
+
 export function defaultList(item, i) {
   const frag = document.createDocumentFragment();
   const list = document.createElement('li');
@@ -10,12 +12,14 @@ export function defaultList(item, i) {
   const label = document.createElement('label');
   const spanDiv = document.createElement('div');
   const span = document.createElement('span');
+  const altSpan = document.createElement('span');
 
   div.appendChild(check);
   div.appendChild(label);
   list.appendChild(div);
   list.appendChild(spanDiv);
   spanDiv.appendChild(span);
+  spanDiv.appendChild(altSpan);
   frag.appendChild(list);
 
   div.classList.add('todo', 'input');
@@ -35,21 +39,27 @@ export function defaultList(item, i) {
   span.classList.add('icon', 'options-icon');
 
   function spanDel() {
-    dropdown.delMenu(spanDiv);
+    if (trackDropmenu === 1) {
+      trackDropmenu -= 1;
+      dropdown.delMenu(spanDiv);
+    }
     window.removeEventListener('click', spanDel);
   }
-
-  span.addEventListener('click', () => {
-    const dropped = dropdown.toggleDropmenu(spanDiv);
-    if (dropped === true) {
-    window.addEventListener('click', spanDel)
+  span.addEventListener('click', (e) => {
+    if (trackDropmenu === 0) {
+      e.stopPropagation();
+      dropdown.createMenu(spanDiv);
+      trackDropmenu += 1;
+    }
+    if (trackDropmenu === 1) {
+      window.addEventListener('click', spanDel)
     }
   })
 
+  altSpan.style.display = 'none';
+  altSpan.className = 'altSpan';
+  altSpan.innerHTML = '&#10003;';
   spanDiv.classList.add('icon-dropmenu');
-  spanDiv.addEventListener('click', (event) => {
-    event.stopPropagation();
-  });
 
   return {
     frag, list, div, check, label, span,
@@ -58,7 +68,6 @@ export function defaultList(item, i) {
 
 
 export const documentToDo = (list) => {
-  console.log('doctodo', list);
   if (list) {
     const wrapper = document.querySelector('.items');
     wrapper.innerHTML = '';
