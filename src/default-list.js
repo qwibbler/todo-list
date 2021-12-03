@@ -1,5 +1,6 @@
 import { toggleComplete } from './complete.js';
 import * as edit from './edit.js';
+import * as dropdown from './dropdown.js';
 
 export function defaultList(item, i) {
   const frag = document.createDocumentFragment();
@@ -7,12 +8,14 @@ export function defaultList(item, i) {
   const div = document.createElement('div');
   const check = document.createElement('input');
   const label = document.createElement('label');
+  const spanDiv = document.createElement('div');
   const span = document.createElement('span');
 
   div.appendChild(check);
   div.appendChild(label);
   list.appendChild(div);
-  list.appendChild(span);
+  list.appendChild(spanDiv);
+  spanDiv.appendChild(span);
   frag.appendChild(list);
 
   div.classList.add('todo', 'input');
@@ -30,14 +33,29 @@ export function defaultList(item, i) {
 
   span.innerHTML = '&#8942;';
   span.classList.add('icon', 'options-icon');
+
+  function spanDel() {
+    dropdown.delMenu(spanDiv);
+    window.removeEventListener('click', spanDel);
+  }
+
   span.addEventListener('click', () => {
-    edit.toggleEditing(div);
+    const dropped = dropdown.toggleDropmenu(spanDiv);
+    if (dropped === true) {
+    window.addEventListener('click', spanDel)
+    }
   })
+
+  spanDiv.classList.add('icon-dropmenu');
+  spanDiv.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
 
   return {
     frag, list, div, check, label, span,
   };
 }
+
 
 export const documentToDo = (list) => {
   console.log('doctodo', list);

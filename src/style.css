@@ -96,6 +96,32 @@ input:hover {
   border: none;
 }
 
+.icon-dropmenu {
+  position: relative;
+}
+
+#list-menu {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 2rem;
+  width: max-content;
+  color: rgb(95, 95, 95);
+  font-size: 0.9rem;
+  background-color: #f6f6f6;
+  padding: 0;
+  margin: 0.75rem;
+}
+
+#list-menu li {
+  padding: 0.5rem 0.75rem;
+}
+
+#list-menu li:hover {
+  cursor: pointer;
+  color: black;
+}
+
 .footer {
   display: flex;
   justify-content: center;
