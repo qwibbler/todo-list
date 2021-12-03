@@ -1,13 +1,12 @@
 import editStart from './edit.js';
 import * as ls from './local-storage.js';
 import * as addRemove from './add-remove-edit.js';
-import { documentToDo } from './default-list.js';
 
 export const delItem = (id) => {
   let items = ls.getListData(ls.saveDataLocation);
   const delThis = items.filter((i) => i.index === id)[0];
   items = addRemove.removeItem(delThis, items);
-  documentToDo(items);
+  document.querySelector('.refresh-icon').click();
 };
 
 export const createMenu = (elem, i) => {
