@@ -32,14 +32,25 @@ span {
   color: gray;
 }
 
+span:hover {
+  cursor: pointer;
+  text-shadow: 2px 2px 2px gray;
+}
+
 input {
   color: gray;
+}
+
+input:hover {
+  cursor: pointer;
 }
 
 .wrapper {
   margin: 2rem;
   background-color: #fefefe;
   box-shadow: 0.1rem 0.25rem 0.3rem rgba(0, 0, 0, 0.06);
+  transition: all 0.5s ease-in-out;
+  overflow-y: auto;
 }
 
 #subheading {
@@ -80,8 +91,4 @@ input {
 
 .footer li {
   border: none;
-}
-
-.footer li:hover {
-  cursor: pointer;
 }

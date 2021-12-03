@@ -26,6 +26,7 @@ export default function defaultList(item, i) {
   list.id = `${i}li`;
 
   span.innerHTML = '&#8942;';
+  span.classList.add('icon', 'options-icon')
 
   return {
     frag, list, div, check, label, span,
