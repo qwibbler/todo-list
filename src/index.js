@@ -1,6 +1,6 @@
 import './style.css';
 import * as ls from './local-storage.js';
-import { documentToDo } from './default-list.js'; // eslint-disable-line
+import { documentToDo } from './default-list.js';
 import * as addRemove from './add-remove-edit.js';
 
 const addIt = document.querySelector('#add-item');

@@ -1,5 +1,5 @@
-import * as startEdit from './edit.js';
-import {delItem} from './index.js'; // eslint-disable-line
+import editStart from './edit.js';
+import { delItem } from './index.js';
 
 export const createMenu = (elem, i) => {
   const frag = document.createDocumentFragment();
@@ -21,7 +21,7 @@ export const createMenu = (elem, i) => {
 
   edit.addEventListener('click', () => {
     const inputDiv = elem.parentElement.querySelector('.input');
-    startEdit.editDesc(inputDiv);
+    editStart(inputDiv);
   });
 
   del.addEventListener('click', () => {

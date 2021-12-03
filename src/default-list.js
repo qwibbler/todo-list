@@ -1,5 +1,5 @@
 import { toggleComplete } from './complete.js';
-import { createMenu, delMenu } from './dropdown.js'; // eslint-disable-line
+import { createMenu, delMenu } from './dropdown.js';
 
 let trackDropmenu = 0;
 
