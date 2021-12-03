@@ -24,8 +24,8 @@ export const removeItem = (item, items) => {
 
 export const removeAll = (items) => {
   const complete = items.filter((i) => i.complete);
-  complete.forEach(ele => {
-    items = removeItem(ele, items)
+  complete.forEach((ele) => {
+    items = removeItem(ele, items);
   });
   return items;
-}
+};

@@ -1,9 +1,9 @@
-import * as startEdit from './edit.js'
-// import * as addRemove from './add-remove.js'
-import { items, delItem } from './index.js';
-export let dropped = 0;
+import * as startEdit from './edit.js';
+import delItem from './index.js'; // eslint-disable-line
 
-export const createMenu = (elem) => {
+let dropped = 0;
+
+export const createMenu = (elem, i) => {
   dropped += 1;
 
   const frag = document.createDocumentFragment();
@@ -18,6 +18,7 @@ export const createMenu = (elem) => {
   ul.id = 'list-menu';
   edit.id = 'edit-list';
   del.id = 'del-list';
+  del.className = 'all-del';
 
   edit.innerHTML = '&#x270D Edit';
   del.innerHTML = '&#128465; Delete';
@@ -25,18 +26,16 @@ export const createMenu = (elem) => {
   edit.addEventListener('click', () => {
     const inputDiv = elem.parentElement.querySelector('.input');
     startEdit.editDesc(inputDiv);
-  })
+  });
 
   del.addEventListener('click', () => {
-    const delThis = items.filter((i) => i.index == elem.parentElement.id[0])[0];
-    // items = addRemove.removeItem(delThis, items);
-    delItem(delThis);
-  })
+    delItem(i);
+  });
 
-  elem.appendChild(frag)
+  elem.appendChild(frag);
   const icon = elem.querySelector('span');
-  icon.innerHTML = '&#8230;'
-}
+  icon.innerHTML = '&#8230;';
+};
 
 export const delMenu = (elem) => {
   dropped -= 1;
@@ -47,14 +46,14 @@ export const delMenu = (elem) => {
   }
 
   const icon = elem.querySelector('span');
-  icon.innerHTML = '&#8942;'
-}
+  icon.innerHTML = '&#8942;';
+};
 
 export const toggleDropmenu = (elem) => {
   if (dropped === 0) {
     createMenu(elem);
   } else if (dropped === 1) {
-    delMenu(elem)
+    delMenu(elem);
   }
   return dropped;
-}
+};

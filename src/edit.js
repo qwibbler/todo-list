@@ -5,10 +5,9 @@ export const toggleIcons = (inputDiv) => {
   const initIcon = listItem.querySelector('span');
   const altIcon = listItem.querySelector('.altSpan');
   const listenerEnd = () => {
-    endEdit(inputDiv)
-    console.log('listener', inputDiv);
+    endEdit(inputDiv); // eslint-disable-line no-use-before-define
     altIcon.removeEventListener('click', listenerEnd);
-  }
+  };
   altIcon.removeEventListener('click', listenerEnd);
   if (initIcon.style.display !== 'none') {
     initIcon.style.display = 'none';
@@ -19,7 +18,7 @@ export const toggleIcons = (inputDiv) => {
     altIcon.style.display = 'none';
   }
   return [initIcon, altIcon];
-}
+};
 
 export const editDesc = (inputDiv) => {
   checkEdit += 1;
@@ -40,16 +39,16 @@ export const editDesc = (inputDiv) => {
       const altIcon = listItem.querySelector('.altSpan');
       altIcon.click();
     }
-  })
+  });
 
   toggleIcons(inputDiv);
-}
+};
 
 export const endEdit = (inputDiv) => {
   if (checkEdit >= 0) {
     checkEdit -= 1;
   } else {
-    return
+    return;
   }
   const input = inputDiv.querySelector('#editing');
   const label = document.createElement('label');
@@ -57,8 +56,8 @@ export const endEdit = (inputDiv) => {
   inputDiv.removeChild(input);
   inputDiv.appendChild(label);
 
-  toggleIcons(inputDiv)
-}
+  toggleIcons(inputDiv);
+};
 
 export const toggleEditing = (inputDiv) => {
   if (checkEdit === false) {
@@ -66,5 +65,4 @@ export const toggleEditing = (inputDiv) => {
   } else {
     endEdit(inputDiv);
   }
-}
-
+};

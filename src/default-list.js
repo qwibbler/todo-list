@@ -1,9 +1,9 @@
 import { toggleComplete } from './complete.js';
-import * as dropdown from './dropdown.js';
+import { createMenu, delMenu } from './dropdown.js'; // eslint-disable-line
 
 let trackDropmenu = 0;
 
-export function defaultList(item, i) {
+export function defaultList(item, i, items) {
   const frag = document.createDocumentFragment();
   const list = document.createElement('li');
   const div = document.createElement('div');
@@ -40,20 +40,20 @@ export function defaultList(item, i) {
   function spanDel() {
     if (trackDropmenu === 1) {
       trackDropmenu -= 1;
-      dropdown.delMenu(spanDiv);
+      delMenu(spanDiv);
     }
     window.removeEventListener('click', spanDel);
   }
   span.addEventListener('click', (e) => {
     if (trackDropmenu === 0) {
       e.stopPropagation();
-      dropdown.createMenu(spanDiv);
+      createMenu(spanDiv, i, items);
       trackDropmenu += 1;
     }
     if (trackDropmenu === 1) {
-      window.addEventListener('click', spanDel)
+      window.addEventListener('click', spanDel);
     }
-  })
+  });
 
   altSpan.style.display = 'none';
   altSpan.className = 'altSpan';
@@ -65,25 +65,17 @@ export function defaultList(item, i) {
   };
 }
 
-
 export const documentToDo = (list) => {
   if (list) {
     const wrapper = document.querySelector('.items');
     wrapper.innerHTML = '';
     for (let i = 0; i < list.length; i += 1) {
-      // DEBUG!!!
-      const todoArr = list.filter((item) => item.index === i);
-      if (todoArr.length < 1) {
-        alert('Repeat index!!!')
-      } else if (todoArr.length === 0) {
-        alert('No index!!!')
-      }
       const todoItem = list.filter((item) => item.index === i)[0];
-      const completeList = defaultList(todoItem, i);
+      const completeList = defaultList(todoItem, i, list);
       completeList.check.addEventListener('click', () => {
         toggleComplete(todoItem, list);
       });
       wrapper.appendChild(completeList.frag);
     }
   }
-}
+};

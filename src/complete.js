@@ -22,7 +22,7 @@ export const itemIncomplete = (item, items) => {
 
 export const toggleComplete = (item, items) => {
   const itemElement = document.getElementById(item.index);
-  const label = itemElement.parentElement.querySelector(`label`);
+  const label = itemElement.parentElement.querySelector('label');
   if (itemElement.checked) {
     item.complete = true;
     label.classList = (item.complete);
@@ -30,5 +30,5 @@ export const toggleComplete = (item, items) => {
     item.complete = false;
     label.classList = (item.complete);
   }
-  ls.saveListData(items, ls.saveDataLocation)
+  ls.saveListData(items, ls.saveDataLocation);
 };
