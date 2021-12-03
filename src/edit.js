@@ -1,22 +1,20 @@
 let checkEdit = 0;
 
 export const toggleIcons = (inputDiv) => {
-  console.log(inputDiv);
   const listItem = inputDiv.parentElement;
   const initIcon = listItem.querySelector('span');
   const altIcon = listItem.querySelector('.altSpan');
-  console.log(altIcon);
   const listenerEnd = () => {
     endEdit(inputDiv)
     console.log('listener', inputDiv);
     altIcon.removeEventListener('click', listenerEnd);
   }
+  altIcon.removeEventListener('click', listenerEnd);
   if (initIcon.style.display !== 'none') {
     initIcon.style.display = 'none';
     altIcon.style.display = 'initial';
     altIcon.addEventListener('click', listenerEnd);
   } else {
-    console.log('tog');
     initIcon.style.display = 'initial';
     altIcon.style.display = 'none';
   }
@@ -38,7 +36,9 @@ export const editDesc = (inputDiv) => {
   input.focus();
   input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-      endEdit(inputDiv);
+      const listItem = inputDiv.parentElement;
+      const altIcon = listItem.querySelector('.altSpan');
+      altIcon.click();
     }
   })
 
