@@ -81,3 +81,7 @@ input {
 .footer li {
   border: none;
 }
+
+.footer li:hover {
+  cursor: pointer;
+}

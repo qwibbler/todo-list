@@ -21,3 +21,11 @@ export const removeItem = (item, items) => {
   })
   return items.filter(i => i == item);
 }
+
+export const removeAll = (items) => {
+  // const completedArr = items.filter(i => i.complete);
+  console.log(items);
+  items = items.filter(i => !i.complete);
+  console.log(items);
+  return items;
+}

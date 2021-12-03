@@ -2,10 +2,11 @@
 import { toggleComplete } from './complete.js';
 import * as ls from './local-storage.js';
 import defaultList from './default-list.js';
-import { addItem } from './add-remove.js';
+import * as addRemove from './add-remove.js';
 
 const wrapper = document.querySelector('.items');
 const addIt = document.querySelector('#add-item');
+const removeIt = document.querySelector('#clear');
 const defaultItems = [
   {
     description: 'wash the dishes',
@@ -19,25 +20,30 @@ const defaultItems = [
   },
 ];
 
-const items = ls.getListData(defaultItems, ls.saveDataLocation);
+let items = ls.getListData(defaultItems, ls.saveDataLocation);
 
-function documentToDo() {
+function documentToDo(list) {
   wrapper.innerHTML = '';
-  for (let i = 0; i < items.length; i += 1) {
-    const todoItem = items.filter((item) => item.index === i)[0];
+  for (let i = 0; i < list.length; i += 1) {
+    const todoItem = list.filter((item) => item.index === i)[0];
     const completeList = defaultList(todoItem, i);
     completeList.check.addEventListener('click', () => {
-      toggleComplete(todoItem, items);
-      ls.saveListData(items, ls.saveDataLocation);
-      documentToDo();
+      toggleComplete(todoItem, list);
+      ls.saveListData(list, ls.saveDataLocation);
+      documentToDo(list);
     });
     wrapper.appendChild(completeList.frag);
   }
 }
 
-window.onload = documentToDo;
+window.onload = documentToDo(items);
 addIt.addEventListener('change', () => {
-  documentToDo(addItem(addIt, items));
+  addRemove.addItem(addIt, items)
+  documentToDo(items);
   ls.saveListData(items, ls.saveDataLocation);
-  console.log('change', items);
+})
+removeIt.addEventListener('click', () => {
+  items = addRemove.removeAll(items)
+  documentToDo(items);
+  ls.saveListData(items, ls.saveDataLocation);
 })
