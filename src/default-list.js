@@ -42,6 +42,13 @@ export const documentToDo = (list) => {
     const wrapper = document.querySelector('.items');
     wrapper.innerHTML = '';
     for (let i = 0; i < list.length; i += 1) {
+      // DEBUG!!!
+      const todoArr = list.filter((item) => item.index === i);
+      if (todoArr.length < 1) {
+        alert('Repeat index!!!')
+      } else if (todoArr.length === 0) {
+        alert('No index!!!')
+      }
       const todoItem = list.filter((item) => item.index === i)[0];
       const completeList = defaultList(todoItem, i);
       completeList.check.addEventListener('click', () => {
