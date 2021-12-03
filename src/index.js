@@ -9,7 +9,7 @@ const refreshIcon = document.querySelector('.refresh-icon');
 const addIcon = document.querySelector('.add-icon');
 let items = ls.getListData(ls.saveDataLocation);
 
-export function refresh() {
+function refresh() {
   items = ls.getListData(ls.saveDataLocation);
   documentToDo(items);
 }
@@ -24,11 +24,11 @@ function removeAll() {
   refresh();
 }
 
-export const delItem = (id) => {
-  const delThis = items.filter((i) => i.index === id)[0];
-  items = addRemove.removeItem(delThis, items);
-  refresh();
-};
+// export const delItem = (id) => {
+//   const delThis = items.filter((i) => i.index === id)[0];
+//   items = addRemove.removeItem(delThis, items);
+//   refresh();
+// };
 
 window.onload = refresh;
 refreshIcon.addEventListener('click', refresh);
