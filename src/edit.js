@@ -1,6 +1,8 @@
 let checkEdit = false;
 
 export const edit = (inputDiv) => {
+  checkEdit = true;
+
   const label = inputDiv.querySelector('label');
   const input = document.createElement('input');
   input.type = 'text';
@@ -9,16 +11,27 @@ export const edit = (inputDiv) => {
   inputDiv.removeChild(label);
   inputDiv.appendChild(input);
   input.focus();
-  checkEdit = true;
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      endEdit(inputDiv);
+    }
+  })
+
+  const icon = inputDiv.parentElement.querySelector('span');
+  icon.innerHTML = '&#10003;'
 }
 
 export const endEdit = (inputDiv) => {
+  checkEdit = false;
+
   const input = inputDiv.querySelector('#editing');
   const label = document.createElement('label');
   label.textContent = input.value;
   inputDiv.removeChild(input);
   inputDiv.appendChild(label);
-  checkEdit = false;
+
+  const icon = inputDiv.parentElement.querySelector('span');
+  icon.innerHTML = '&#8942;';
 }
 
 export const toggleEditing = (inputDiv) => {
