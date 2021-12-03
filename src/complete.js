@@ -20,9 +20,12 @@ export const itemIncomplete = (item, items) => {
 
 export const toggleComplete = (item, items) => {
   const itemElement = document.getElementById(item.index);
+  const label = itemElement.parentElement.querySelector(`label`);
   if (itemElement.checked) {
     item.complete = true;
+    label.classList = (item.complete);
   } else {
     item.complete = false;
+    label.classList = (item.complete);
   }
 };
