@@ -1,11 +1,13 @@
+import * as ls from './local-storage.js';
+
 export const addItem = (input, items) => {
-  // items.forEach((item) => { item.index += 1; });
   items.push({
     description: input.value,
     complete: false,
     index: items.length,
   });
   input.value = '';
+  ls.saveListData(items, ls.saveDataLocation);
   return items;
 };
 
@@ -16,6 +18,7 @@ export const removeItem = (item, items) => {
       i.index -= 1;
     }
   });
+  ls.saveListData(items, ls.saveDataLocation);
   return removed;
 };
 

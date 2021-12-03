@@ -17,13 +17,11 @@ function refresh() {
 function add() {
   addRemove.addItem(addIt, items);
   refresh();
-  ls.saveListData(items, ls.saveDataLocation);
 }
 
 function removeAll() {
   items = addRemove.removeAll(items);
   refresh();
-  ls.saveListData(items, ls.saveDataLocation);
 }
 
 window.onload = refresh;
