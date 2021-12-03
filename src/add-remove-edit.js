@@ -18,7 +18,7 @@ export const removeItem = (item, items) => {
       i.index -= 1;
     }
   });
-  ls.saveListData(items, ls.saveDataLocation);
+  ls.saveListData(removed, ls.saveDataLocation);
   return removed;
 };
 
