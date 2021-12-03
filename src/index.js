@@ -10,8 +10,8 @@ const addIcon = document.querySelector('.add-icon');
 let items = ls.getListData(ls.saveDataLocation);
 
 export function refresh() {
+  items = ls.getListData(ls.saveDataLocation);
   documentToDo(items);
-  ls.saveListData(items, ls.saveDataLocation);
 }
 
 function add() {
@@ -28,7 +28,7 @@ export const delItem = (id) => {
   const delThis = items.filter((i) => i.index === id)[0];
   items = addRemove.removeItem(delThis, items);
   refresh();
-}
+};
 
 window.onload = refresh;
 refreshIcon.addEventListener('click', refresh);

@@ -45,8 +45,6 @@ export const editDesc = (inputDiv) => {
   toggleIcons(inputDiv);
 };
 
-
-
 export const endEdit = (inputDiv) => {
   if (checkEdit >= 0) {
     checkEdit -= 1;
@@ -61,10 +59,8 @@ export const endEdit = (inputDiv) => {
 
   toggleIcons(inputDiv);
   const id = inputDiv.classList[2];
-  console.log(id);
-  let items = ls.getListData(ls.saveDataLocation);
-  const item = items.find(item => item.index == id);
-  console.log(item);
+  const items = ls.getListData(ls.saveDataLocation);
+  const item = items.find((item) => item.index === Number(id));
   item.description = label.textContent;
   ls.saveListData(items, ls.saveDataLocation);
 };
