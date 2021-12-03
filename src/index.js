@@ -1,7 +1,7 @@
 // import './style.css';
 import * as ls from './local-storage.js';
 import { documentToDo } from './default-list.js'; // eslint-disable-line
-import * as addRemove from './add-remove.js';
+import * as addRemove from './add-remove-edit.js';
 
 const addIt = document.querySelector('#add-item');
 const removeIt = document.querySelector('#clear');
@@ -9,8 +9,9 @@ const refreshIcon = document.querySelector('.refresh-icon');
 const addIcon = document.querySelector('.add-icon');
 let items = ls.getListData(ls.saveDataLocation);
 
-function refresh() {
+export function refresh() {
   documentToDo(items);
+  ls.saveListData(items, ls.saveDataLocation);
 }
 
 function add() {
@@ -23,12 +24,11 @@ function removeAll() {
   refresh();
 }
 
-const delItem = (id) => {
+export const delItem = (id) => {
   const delThis = items.filter((i) => i.index === id)[0];
   items = addRemove.removeItem(delThis, items);
   refresh();
 }
-export default delItem;
 
 window.onload = refresh;
 refreshIcon.addEventListener('click', refresh);

@@ -1,3 +1,5 @@
+import * as ls from './local-storage.js';
+
 let checkEdit = 0;
 
 export const toggleIcons = (inputDiv) => {
@@ -17,7 +19,6 @@ export const toggleIcons = (inputDiv) => {
     initIcon.style.display = 'initial';
     altIcon.style.display = 'none';
   }
-  return [initIcon, altIcon];
 };
 
 export const editDesc = (inputDiv) => {
@@ -44,6 +45,8 @@ export const editDesc = (inputDiv) => {
   toggleIcons(inputDiv);
 };
 
+
+
 export const endEdit = (inputDiv) => {
   if (checkEdit >= 0) {
     checkEdit -= 1;
@@ -57,12 +60,11 @@ export const endEdit = (inputDiv) => {
   inputDiv.appendChild(label);
 
   toggleIcons(inputDiv);
-};
-
-export const toggleEditing = (inputDiv) => {
-  if (checkEdit === false) {
-    editDesc(inputDiv);
-  } else {
-    endEdit(inputDiv);
-  }
+  const id = inputDiv.classList[2];
+  console.log(id);
+  let items = ls.getListData(ls.saveDataLocation);
+  const item = items.find(item => item.index == id);
+  console.log(item);
+  item.description = label.textContent;
+  ls.saveListData(items, ls.saveDataLocation);
 };
