@@ -2,6 +2,7 @@ import { toggleComplete } from './complete.js';
 import * as ls from './local-storage.js';
 
 export function defaultList(item, i) {
+  console.log('defaultlist', item, i);
   const frag = document.createDocumentFragment();
   const list = document.createElement('li');
   const div = document.createElement('div');
@@ -37,16 +38,20 @@ export function defaultList(item, i) {
 }
 
 export const documentToDo = (list) => {
-  const wrapper = document.querySelector('.items');
-  wrapper.innerHTML = '';
-  for (let i = 0; i < list.length; i += 1) {
-    const todoItem = list.filter((item) => item.index === i)[0];
-    const completeList = defaultList(todoItem, i);
-    completeList.check.addEventListener('click', () => {
-      toggleComplete(todoItem, list);
-      ls.saveListData(list, ls.saveDataLocation);
-      documentToDo(list);
-    });
-    wrapper.appendChild(completeList.frag);
+  if (list) {
+    console.log('refresh, listnotnull', list);
+    const wrapper = document.querySelector('.items');
+    wrapper.innerHTML = '';
+    for (let i = 0; i < list.length; i += 1) {
+      const todoItem = list.filter((item) => item.index === i)[0];
+      const completeList = defaultList(todoItem, i);
+      completeList.check.addEventListener('click', () => {
+        console.log('run doc-todo addevent', list);
+        toggleComplete(todoItem, list);
+        ls.saveListData(list, ls.saveDataLocation);
+        documentToDo(list);
+      });
+      wrapper.appendChild(completeList.frag);
+    }
   }
-};
+}

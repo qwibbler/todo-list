@@ -8,20 +8,7 @@ const removeIt = document.querySelector('#clear');
 const refreshIcon = document.querySelector('.refresh-icon');
 const addIcon = document.querySelector('.add-icon');
 
-const defaultItems = [
-  {
-    description: 'wash the dishes',
-    complete: false,
-    index: 0,
-  },
-  {
-    description: 'complete To Do list project',
-    complete: false,
-    index: 1,
-  },
-];
-
-let items = ls.getListData(defaultItems, ls.saveDataLocation);
+let items = ls.getListData(ls.saveDataLocation);
 
 function refresh() {
   defaultList.documentToDo(items);
