@@ -1,6 +1,6 @@
 import editStart from './edit.js';
 import * as ls from './local-storage.js';
-import * as addRemove from './add-remove-edit.js';
+import * as addRemove from './add-remove.js';
 
 export const delItem = (id) => {
   let items = ls.getListData(ls.saveDataLocation);

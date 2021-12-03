@@ -1,7 +1,7 @@
-// import './style.css';
+import './style.css';
 import * as ls from './local-storage.js';
 import { documentToDo } from './default-list.js';
-import * as addRemove from './add-remove-edit.js';
+import * as addRemove from './add-remove.js';
 
 const addIt = document.querySelector('#add-item');
 const removeIt = document.querySelector('#clear');
@@ -23,12 +23,6 @@ function removeAll() {
   items = addRemove.removeAll(items);
   refresh();
 }
-
-// export const delItem = (id) => {
-//   const delThis = items.filter((i) => i.index === id)[0];
-//   items = addRemove.removeItem(delThis, items);
-//   refresh();
-// };
 
 window.onload = refresh;
 refreshIcon.addEventListener('click', refresh);

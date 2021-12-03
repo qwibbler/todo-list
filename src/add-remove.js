@@ -1,10 +1,13 @@
 import * as ls from './local-storage.js';
 
+const { v4: uuidv4 } = require('uuid');
+
 export const addItem = (input, items) => {
   items.push({
     description: input.value,
     complete: false,
     index: items.length,
+    uniqueId: uuidv4(),
   });
   input.value = '';
   ls.saveListData(items, ls.saveDataLocation);
