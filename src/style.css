@@ -11,30 +11,71 @@ ul {
 }
 
 li {
-  padding: 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid #e6e6e6;
 }
 
+li * {
+  padding: 0.75rem;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
 span {
+  position: relative;
+  min-width: 1.25rem;
+  text-align: center;
   color: gray;
+}
+
+span:hover {
+  cursor: pointer;
+  text-shadow: 2px 2px 2px gray;
 }
 
 input {
   color: gray;
 }
 
+input:hover {
+  cursor: pointer;
+}
+
 .wrapper {
   margin: 2rem;
   background-color: #fefefe;
   box-shadow: 0.1rem 0.25rem 0.3rem rgba(0, 0, 0, 0.06);
+  transition: all 0.5s ease-in-out;
+  overflow-y: auto;
 }
 
 #subheading {
-  font-style: italic;
   color: gray;
+}
+
+#subheading span {
+  padding: 0.75rem;
+}
+
+#subheading input {
+  width: 100%;
+  height: 100%;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-size: 1rem;
+  border: none;
+  color: gray;
+}
+
+#subheading input:focus {
+  outline: none;
+  color: black;
+  font-weight: bold;
 }
 
 .true {
@@ -42,13 +83,52 @@ input {
   color: gray;
 }
 
+.input {
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+}
+
+#editing {
+  color: black;
+  background-color: lightgray;
+  margin: 0 0 0 0.75rem;
+  padding: 0.75rem;
+  border: none;
+}
+
+.icon-dropmenu {
+  position: relative;
+}
+
+#list-menu {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 2rem;
+  width: max-content;
+  color: rgb(95, 95, 95);
+  font-size: 0.9rem;
+  background-color: #f6f6f6;
+  padding: 0;
+  margin: 0.75rem;
+}
+
+#list-menu li {
+  padding: 0.5rem 0.75rem;
+}
+
+#list-menu li:hover {
+  cursor: pointer;
+  color: black;
+}
+
 .footer {
   display: flex;
   justify-content: center;
-  color: gray;
   background-color: #f6f6f6;
 }
 
-.footer li {
+#clear {
   border: none;
 }

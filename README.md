@@ -15,7 +15,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](#)
+[Live Demo Link](https://qwibbler.github.io/todo-list/)
 
 
 ## Getting Started
@@ -35,6 +35,7 @@ To get a local copy up and running follow these simple example steps.
 ### Install
 1. `cd` into the repository's folder.
 2. Enter `npm install` into the terminal.
+3. Enter `npm run build` into the terminal.
 3. Run the dist\index.html file.
 
 ## Authors

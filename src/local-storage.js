@@ -5,10 +5,10 @@ export const saveListData = (data, location) => {
   return data;
 };
 
-export const getListData = (defaultData, location) => {
+export const getListData = (location) => {
   if (localStorage.getItem(location)) {
     const data = JSON.parse(localStorage.getItem(location));
     return data;
   }
-  return saveListData(defaultData, location);
+  return [];
 };
