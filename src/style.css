@@ -83,6 +83,19 @@ input:hover {
   color: gray;
 }
 
+.input {
+  display: flex;
+  padding: 0 0.75rem;
+}
+
+#editing {
+  color: black;
+  background-color: lightgray;
+  margin: 0 0 0 0.75rem;
+  padding: 0.75rem;
+  border: none;
+}
+
 .footer {
   display: flex;
   justify-content: center;

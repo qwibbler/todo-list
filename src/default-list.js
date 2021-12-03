@@ -1,5 +1,5 @@
 import { toggleComplete } from './complete.js';
-import * as ls from './local-storage.js';
+import * as edit from './edit.js';
 
 export function defaultList(item, i) {
   const frag = document.createDocumentFragment();
@@ -30,6 +30,9 @@ export function defaultList(item, i) {
 
   span.innerHTML = '&#8942;';
   span.classList.add('icon', 'options-icon');
+  span.addEventListener('click', () => {
+    edit.toggleEditing(div);
+  })
 
   return {
     frag, list, div, check, label, span,
