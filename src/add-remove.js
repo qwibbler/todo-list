@@ -7,7 +7,7 @@ export const addItem = (input, items) => {
     description: input.value,
     complete: false,
     index: items.length,
-    uniqueId: uuidv4(),
+    uniqueID: uuidv4(),
   });
   input.value = '';
   ls.saveListData(items, ls.saveDataLocation);
