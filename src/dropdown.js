@@ -1,5 +1,6 @@
 import * as startEdit from './edit.js'
-
+// import * as addRemove from './add-remove.js'
+import { items, delItem } from './index.js';
 export let dropped = 0;
 
 export const createMenu = (elem) => {
@@ -24,6 +25,12 @@ export const createMenu = (elem) => {
   edit.addEventListener('click', () => {
     const inputDiv = elem.parentElement.querySelector('.input');
     startEdit.editDesc(inputDiv);
+  })
+
+  del.addEventListener('click', () => {
+    const delThis = items.filter((i) => i.index == elem.parentElement.id[0])[0];
+    // items = addRemove.removeItem(delThis, items);
+    delItem(delThis);
   })
 
   elem.appendChild(frag)

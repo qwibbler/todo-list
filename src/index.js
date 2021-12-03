@@ -2,13 +2,14 @@
 import * as ls from './local-storage.js';
 import * as defaultList from './default-list.js';
 import * as addRemove from './add-remove.js';
+// import * as dropdown from './dropdown.js';
 
 const addIt = document.querySelector('#add-item');
 const removeIt = document.querySelector('#clear');
 const refreshIcon = document.querySelector('.refresh-icon');
 const addIcon = document.querySelector('.add-icon');
 
-let items = ls.getListData(ls.saveDataLocation);
+export let items = ls.getListData(ls.saveDataLocation);
 
 function refresh() {
   defaultList.documentToDo(items);
@@ -21,6 +22,11 @@ function add() {
 
 function removeAll() {
   items = addRemove.removeAll(items);
+  refresh();
+}
+
+export function delItem(delThis) {
+  items = addRemove.removeItem(delThis, items);
   refresh();
 }
 

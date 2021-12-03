@@ -1,5 +1,4 @@
 import { toggleComplete } from './complete.js';
-import * as edit from './edit.js';
 import * as dropdown from './dropdown.js';
 
 let trackDropmenu = 0;
