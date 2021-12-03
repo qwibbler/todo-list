@@ -1,6 +1,6 @@
 export const itemComplete = (item, items) => {
   item.complete = true;
-  let indexGreater = items.filter(i => i.index > item.index);
+  const indexGreater = items.filter((i) => i.index > item.index);
   // console.log(items.filter(i => i.index > item.index));
   for (let i = 0; i < indexGreater.length; i += 1) {
     if (!indexGreater[i].complete) {
@@ -14,7 +14,7 @@ export const itemComplete = (item, items) => {
 
 export const itemIncomplete = (item, items) => {
   item.complete = false;
-  let indexLesser = items.filter((i) => i.index < item.index);
+  const indexLesser = items.filter((i) => i.index < item.index);
   for (let i = 0; i < indexLesser.length; i += 1) {
     // console.log('incomp iter index less', indexLesser[i]);
     indexLesser[i].index += 1;
