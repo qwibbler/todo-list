@@ -1,3 +1,5 @@
+import * as ls from './local-storage.js';
+
 export const itemComplete = (item, items) => {
   item.complete = true;
   const indexGreater = items.filter((i) => i.index > item.index);
@@ -28,4 +30,5 @@ export const toggleComplete = (item, items) => {
     item.complete = false;
     label.classList = (item.complete);
   }
+  ls.saveListData(items, ls.saveDataLocation)
 };

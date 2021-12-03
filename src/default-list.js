@@ -46,8 +46,6 @@ export const documentToDo = (list) => {
       const completeList = defaultList(todoItem, i);
       completeList.check.addEventListener('click', () => {
         toggleComplete(todoItem, list);
-        ls.saveListData(list, ls.saveDataLocation);
-        // documentToDo(list);
       });
       wrapper.appendChild(completeList.frag);
     }
