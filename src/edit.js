@@ -1,7 +1,5 @@
 import * as ls from './local-storage.js';
 
-// let checkEdit = 0;
-
 const updateEdit = (inputDiv, label) => {
   const id = inputDiv.classList[2];
   const items = ls.getListData(ls.saveDataLocation);
@@ -11,8 +9,6 @@ const updateEdit = (inputDiv, label) => {
 };
 
 const editDesc = (inputDiv) => {
-  // checkEdit += 1;
-
   const label = inputDiv.querySelector('label');
   const input = document.createElement('input');
   input.type = 'text';
@@ -33,12 +29,6 @@ const editDesc = (inputDiv) => {
 };
 
 const endEdit = (inputDiv) => {
-  // if (checkEdit >= 0) {
-  //   checkEdit -= 1;
-  // } else {
-  //   return;
-  // }
-
   const input = inputDiv.querySelector('#editing');
   const label = document.createElement('label');
   label.textContent = input.value;
@@ -46,7 +36,6 @@ const endEdit = (inputDiv) => {
   inputDiv.appendChild(label);
 
   updateEdit(inputDiv, label);
-  // toggleIcons(inputDiv);
 };
 
 const toggleIcons = (inputDiv) => {
