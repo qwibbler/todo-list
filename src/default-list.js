@@ -22,7 +22,7 @@ export function defaultList(item, i) {
   spanDiv.appendChild(altSpan);
   frag.appendChild(list);
 
-  div.classList.add('todo', 'input');
+  div.classList.add('todo', 'input', `${item.index}`);
 
   check.type = 'checkbox';
   check.name = item.index;

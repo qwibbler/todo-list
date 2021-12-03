@@ -1,19 +1,22 @@
-let checkEdit = false;
+let checkEdit = 0;
 
 export const toggleIcons = (inputDiv) => {
+  console.log(inputDiv);
   const listItem = inputDiv.parentElement;
   const initIcon = listItem.querySelector('span');
   const altIcon = listItem.querySelector('.altSpan');
+  console.log(altIcon);
   const listenerEnd = () => {
     endEdit(inputDiv)
-    console.log('listener');
+    console.log('listener', inputDiv);
     altIcon.removeEventListener('click', listenerEnd);
   }
-  if (checkEdit === true) {
+  if (initIcon.style.display !== 'none') {
     initIcon.style.display = 'none';
     altIcon.style.display = 'initial';
     altIcon.addEventListener('click', listenerEnd);
   } else {
+    console.log('tog');
     initIcon.style.display = 'initial';
     altIcon.style.display = 'none';
   }
@@ -21,7 +24,7 @@ export const toggleIcons = (inputDiv) => {
 }
 
 export const editDesc = (inputDiv) => {
-  checkEdit = true;
+  checkEdit += 1;
 
   const label = inputDiv.querySelector('label');
   const input = document.createElement('input');
@@ -40,17 +43,11 @@ export const editDesc = (inputDiv) => {
   })
 
   toggleIcons(inputDiv);
-  // const listenerEnd = () => {
-  //   endEdit(inputDiv)
-  //   console.log('listener');
-  // // }
-  // icon.removeEventListener('click', listenerEnd);
-  // icon.addEventListener('click', listenerEnd);
 }
 
 export const endEdit = (inputDiv) => {
-  if (checkEdit === true) {
-    checkEdit = false;
+  if (checkEdit >= 0) {
+    checkEdit -= 1;
   } else {
     return
   }
