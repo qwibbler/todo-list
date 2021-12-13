@@ -1,6 +1,6 @@
 import './style.css';
 import * as ls from './local-storage.js';
-import { documentToDo } from './default-list.js';
+import documentToDo from './default-list.js';
 import * as addRemove from './add-remove.js';
 
 const addIt = document.querySelector('#add-item');
@@ -19,8 +19,8 @@ function add() {
   refresh();
 }
 
-function removeAll() {
-  items = addRemove.removeAll(items);
+function removeAllCompleted() {
+  items = addRemove.removeAllCompleted(items);
   refresh();
 }
 
@@ -34,4 +34,4 @@ addIt.addEventListener('keypress', (e) => {
   }
 });
 
-removeIt.addEventListener('click', removeAll);
+removeIt.addEventListener('click', removeAllCompleted);

@@ -4,6 +4,12 @@ body {
   border-bottom: 2rem solid black;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -48,6 +54,8 @@ input:hover {
 
 .wrapper {
   margin: 2rem;
+  max-width: 50rem;
+  width: 100%;
   background-color: #fefefe;
   box-shadow: 0.1rem 0.25rem 0.3rem rgba(0, 0, 0, 0.06);
   transition: all 0.5s ease-in-out;
@@ -76,6 +84,12 @@ input:hover {
   outline: none;
   color: black;
   font-weight: bold;
+}
+
+.todo.items {
+  max-height: calc(100vh - 22rem);
+  overflow-y: auto;
+  min-height: 3rem;
 }
 
 .true {
