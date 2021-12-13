@@ -1,13 +1,10 @@
 import * as ls from './local-storage.js';
 
-const { v4: uuidv4 } = require('uuid');
-
 export const addItem = (input, items) => {
   items.push({
     description: input.value,
     complete: false,
     index: items.length,
-    uniqueID: uuidv4(),
   });
   input.value = '';
   ls.saveListData(items, ls.saveDataLocation);
@@ -15,19 +12,19 @@ export const addItem = (input, items) => {
 };
 
 export const removeItem = (item, items) => {
-  const removed = items.filter((i) => i !== item);
-  removed.forEach((i) => {
+  const arrWithoutItem = items.filter((i) => i !== item);
+  arrWithoutItem.forEach((i) => {
     if (item.index < i.index) {
       i.index -= 1;
     }
   });
-  ls.saveListData(removed, ls.saveDataLocation);
-  return removed;
+  ls.saveListData(arrWithoutItem, ls.saveDataLocation);
+  return arrWithoutItem;
 };
 
-export const removeAll = (items) => {
-  const complete = items.filter((i) => i.complete);
-  complete.forEach((ele) => {
+export const removeAllCompleted = (items) => {
+  const arrAllComplete = items.filter((i) => i.complete);
+  arrAllComplete.forEach((ele) => {
     items = removeItem(ele, items);
   });
   return items;
